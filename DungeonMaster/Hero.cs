@@ -29,14 +29,62 @@ public class HeroAttributes
     }
 }
 
+
+
 public interface Hero
 {
     string Name { get; set; }
     int Level { get; set; }
-    IEquipment[] Equipments { get; set; }
+    List<IEquipment> Equipments { get; set; }
     WeaponsType[] ValidWeaponsTypes { get; set; }
     ArmorType[] ValidArmorTypes { get; set; }
     HeroAttributes Attributes { get; set; }
+
+    public void EquipWeapon(Weapon weapon)
+    {
+        if (ValidWeaponsTypes.Contains(weapon.GetType()) && Level >= weapon.RequiredLevel)
+        {
+            
+        }
+    }
+
+    private int calculateStrength()
+    {
+        int fromArmor = 0;
+        foreach (Armor armor in Equipments.OfType<Armor>())
+        {
+            fromArmor += armor.ArmorAttribute.Strength;
+        }
+
+        return fromArmor + Attributes.Strength;
+    }
+
+    private int calculateDex()
+    {
+        int fromArmor = 0;
+        foreach (Armor armor in Equipments.OfType<Armor>())
+        {
+            fromArmor += armor.ArmorAttribute.Dexterity;
+        }
+
+        return fromArmor + Attributes.Dexterity;
+    }
+
+    private int calculateInt()
+    {
+        int fromArmor = 0;
+        foreach (Armor armor in Equipments.OfType<Armor>())
+        {
+            fromArmor += armor.ArmorAttribute.Intelligence;
+        }
+
+        return fromArmor + Attributes.Intelligence;
+    }
+
+    public int CalculateAttributes()
+    {
+        return calculateStrength() + calculateInt() + calculateDex();
+    }
 
     public void PrintHeroDetails()
     {

@@ -2,6 +2,13 @@
 
 public class Wizard : Hero
 {
+    public string Name { get; set; }
+    public int Level { get; set; }
+    public IEquipment[] Equipments { get; set; }
+    public WeaponsType[] ValidWeaponsTypes { get; set; }
+    public ArmorType[] ValidArmorTypes { get; set; }
+    public HeroAttributes Attributes { get; set; }
+
     public Wizard(string name)
     {
         Name = name;
@@ -12,16 +19,23 @@ public class Wizard : Hero
         Equipments = Array.Empty<IEquipment>();
     }
 
+    public int CalculateDamage()
+    {
+        int dmgAttribute = Attributes.Intelligence;
+        int dmgWeapon = Equipments.OfType<Weapon>().FirstOrDefault()!.GetDamage();
+        return dmgWeapon + dmgAttribute;
+    }
+}
+
+public class Archer : Hero
+{
     public string Name { get; set; }
     public int Level { get; set; }
     public IEquipment[] Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
     public HeroAttributes Attributes { get; set; }
-}
 
-public class Archer : Hero
-{
     public Archer(string name)
     {
         Name = name;
@@ -32,16 +46,23 @@ public class Archer : Hero
         Equipments = Array.Empty<IEquipment>();
     }
 
+    public int CalculateDamage()
+    {
+        int dmgAttribute = Attributes.Dexterity;
+        int dmgWeapon = Equipments.OfType<Weapon>().FirstOrDefault()!.GetDamage();
+        return dmgWeapon + dmgAttribute;
+    }
+}
+
+public class Swashbuckler : Hero
+{
     public string Name { get; set; }
     public int Level { get; set; }
     public IEquipment[] Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
     public HeroAttributes Attributes { get; set; }
-}
 
-public class Swashbuckler : Hero
-{
     public Swashbuckler(string name)
     {
         Name = name;
@@ -52,16 +73,23 @@ public class Swashbuckler : Hero
         Equipments = Array.Empty<IEquipment>();
     }
 
+    public int CalculateDamage()
+    {
+        int dmgAttribute = Attributes.Dexterity;
+        int dmgWeapon = Equipments.OfType<Weapon>().FirstOrDefault()!.GetDamage();
+        return dmgWeapon + dmgAttribute;
+    }
+}
+
+public class Barbarian : Hero
+{
     public string Name { get; set; }
     public int Level { get; set; }
     public IEquipment[] Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
     public HeroAttributes Attributes { get; set; }
-}
 
-public class Barbarian : Hero
-{
     public Barbarian(string name)
     {
         Name = name;
@@ -72,10 +100,10 @@ public class Barbarian : Hero
         Equipments = Array.Empty<IEquipment>();
     }
 
-    public string Name { get; set; }
-    public int Level { get; set; }
-    public IEquipment[] Equipments { get; set; }
-    public WeaponsType[] ValidWeaponsTypes { get; set; }
-    public ArmorType[] ValidArmorTypes { get; set; }
-    public HeroAttributes Attributes { get; set; }
+    public int CalculateDamage()
+    {
+        int dmgAttribute = Attributes.Strength;
+        int dmgWeapon = Equipments.OfType<Weapon>().FirstOrDefault()!.GetDamage();
+        return dmgWeapon + dmgAttribute;
+    }
 }

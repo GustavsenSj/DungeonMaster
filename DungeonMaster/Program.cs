@@ -5,3 +5,4 @@ Hero player = new HeroFactory().CreatArcher("Sjur");
 
 Console.WriteLine("Hello, World!");
 player.PrintHeroDetails();
+Console.WriteLine($"{player.CalculateAttributes()}");
