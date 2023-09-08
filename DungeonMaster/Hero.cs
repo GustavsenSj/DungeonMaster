@@ -44,8 +44,15 @@ public interface Hero
         
         if (ValidWeaponsTypes.Contains(weapon.GetType()) && Level >= weapon.RequiredLevel)
         {
-            Console.WriteLine("Equipped");
             Equipments[weapon.Slot] = weapon;
+        }
+    }
+
+    public void EquipArmor(Armor armor)
+    {
+        if (ValidArmorTypes.Contains(armor.GetArmorType()) && Level >= armor.RequiredLevel)
+        {
+            Equipments[armor.Slot] = armor;
         }
     }
 
@@ -96,7 +103,6 @@ public interface Hero
         Console.WriteLine("Equipments:");
         foreach (KeyValuePair<EquipmentSlot, IEquipment> equipment in Equipments)
         {
-            Console.WriteLine($"{equipment}");
             Console.WriteLine($"- {equipment.Value.Name}");
         }
 

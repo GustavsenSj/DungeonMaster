@@ -22,7 +22,12 @@ public class Wizard : Hero
     public int CalculateDamage()
     {
         int dmgAttribute = Attributes.Intelligence;
-        int dmgWeapon = Equipments.OfType<Weapon>().FirstOrDefault()!.GetDamage();
+        int dmgWeapon = 0;
+        IEquipment equipment = Equipments[EquipmentSlot.Weapon];
+        if (equipment is Weapon weapon)
+        {
+            dmgWeapon = weapon.GetDamage();
+        }
         return dmgWeapon + dmgAttribute;
     }
 }

@@ -20,7 +20,11 @@ public class Armor: IEquipment
         Type = type;
         ArmorAttribute = armorAttribute;
     }
-    
+
+    public ArmorType GetArmorType()
+    {
+        return Type;
+    } 
     public string Name { get; set; }
     public int RequiredLevel { get; set; }
     public EquipmentSlot Slot { get; set; }
