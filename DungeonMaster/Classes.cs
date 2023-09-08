@@ -4,7 +4,7 @@ public class Wizard : Hero
 {
     public string Name { get; set; }
     public int Level { get; set; }
-    public IEquipment[] Equipments { get; set; }
+    public Dictionary<EquipmentSlot, IEquipment> Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
     public HeroAttributes Attributes { get; set; }
@@ -16,7 +16,7 @@ public class Wizard : Hero
         Level = 1;
         ValidWeaponsTypes = new WeaponsType[] { WeaponsType.Staff, WeaponsType.Wand };
         ValidArmorTypes = new ArmorType[] { ArmorType.Cloth };
-        Equipments = Array.Empty<IEquipment>();
+        Equipments = new Dictionary<EquipmentSlot, IEquipment>();
     }
 
     public int CalculateDamage()
@@ -31,7 +31,7 @@ public class Archer : Hero
 {
     public string Name { get; set; }
     public int Level { get; set; }
-    public IEquipment[] Equipments { get; set; }
+    public Dictionary<EquipmentSlot, IEquipment> Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
     public HeroAttributes Attributes { get; set; }
@@ -43,7 +43,7 @@ public class Archer : Hero
         Level = 1;
         ValidWeaponsTypes = new WeaponsType[] { WeaponsType.Bow };
         ValidArmorTypes = new ArmorType[] { ArmorType.Leather, ArmorType.Mail };
-        Equipments = Array.Empty<IEquipment>();
+        Equipments = new Dictionary<EquipmentSlot, IEquipment>();
     }
 
     public int CalculateDamage()
@@ -58,7 +58,7 @@ public class Swashbuckler : Hero
 {
     public string Name { get; set; }
     public int Level { get; set; }
-    public IEquipment[] Equipments { get; set; }
+    public Dictionary<EquipmentSlot, IEquipment> Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
     public HeroAttributes Attributes { get; set; }
@@ -70,7 +70,7 @@ public class Swashbuckler : Hero
         Level = 1;
         ValidWeaponsTypes = new WeaponsType[] { WeaponsType.Dagger, WeaponsType.Sword };
         ValidArmorTypes = new ArmorType[] { ArmorType.Leather, ArmorType.Mail };
-        Equipments = Array.Empty<IEquipment>();
+        Equipments = new Dictionary<EquipmentSlot, IEquipment>();
     }
 
     public int CalculateDamage()
@@ -85,7 +85,7 @@ public class Barbarian : Hero
 {
     public string Name { get; set; }
     public int Level { get; set; }
-    public IEquipment[] Equipments { get; set; }
+    public Dictionary<EquipmentSlot, IEquipment> Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
     public HeroAttributes Attributes { get; set; }
@@ -97,7 +97,7 @@ public class Barbarian : Hero
         Level = 1;
         ValidWeaponsTypes = new WeaponsType[] { WeaponsType.Hatchet, WeaponsType.Mace, WeaponsType.Sword };
         ValidArmorTypes = new ArmorType[] { ArmorType.Mail, ArmorType.Plate };
-        Equipments = Array.Empty<IEquipment>();
+        Equipments = new Dictionary<EquipmentSlot, IEquipment>();
     }
 
     public int CalculateDamage()

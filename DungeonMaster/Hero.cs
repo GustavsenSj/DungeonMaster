@@ -30,25 +30,27 @@ public class HeroAttributes
 }
 
 
-
 public interface Hero
 {
     string Name { get; set; }
     int Level { get; set; }
-    List<IEquipment> Equipments { get; set; }
+    Dictionary<EquipmentSlot, IEquipment> Equipments { get; set; }
     WeaponsType[] ValidWeaponsTypes { get; set; }
     ArmorType[] ValidArmorTypes { get; set; }
     HeroAttributes Attributes { get; set; }
 
     public void EquipWeapon(Weapon weapon)
     {
+        
         if (ValidWeaponsTypes.Contains(weapon.GetType()) && Level >= weapon.RequiredLevel)
         {
-            
+            Console.WriteLine("Equipped");
+            Equipments[weapon.Slot] = weapon;
         }
     }
 
-    private int calculateStrength()
+    int CalculateDamage();
+    private int CalculateStrength()
     {
         int fromArmor = 0;
         foreach (Armor armor in Equipments.OfType<Armor>())
@@ -59,7 +61,7 @@ public interface Hero
         return fromArmor + Attributes.Strength;
     }
 
-    private int calculateDex()
+    private int CalculateDex()
     {
         int fromArmor = 0;
         foreach (Armor armor in Equipments.OfType<Armor>())
@@ -70,7 +72,7 @@ public interface Hero
         return fromArmor + Attributes.Dexterity;
     }
 
-    private int calculateInt()
+    private int CalculateInt()
     {
         int fromArmor = 0;
         foreach (Armor armor in Equipments.OfType<Armor>())
@@ -83,7 +85,7 @@ public interface Hero
 
     public int CalculateAttributes()
     {
-        return calculateStrength() + calculateInt() + calculateDex();
+        return CalculateStrength() + CalculateInt() + CalculateDex();
     }
 
     public void PrintHeroDetails()
@@ -92,9 +94,10 @@ public interface Hero
         Console.WriteLine($"Name: {Name}");
         Console.WriteLine($"Level: {Level}");
         Console.WriteLine("Equipments:");
-        foreach (IEquipment equipment in Equipments)
+        foreach (KeyValuePair<EquipmentSlot, IEquipment> equipment in Equipments)
         {
-            Console.WriteLine($"- {equipment.Name}");
+            Console.WriteLine($"{equipment}");
+            Console.WriteLine($"- {equipment.Value.Name}");
         }
 
         Console.WriteLine("Valid Weapons Types:");
