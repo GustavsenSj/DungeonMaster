@@ -1,5 +1,7 @@
 ﻿namespace DungeonMaster;
-
+/// <summary>
+/// The WeaponsType represent all the different types of weapons that exist in the program. 
+/// </summary>
 public enum WeaponsType
 {
     Hatchet,
@@ -10,6 +12,9 @@ public enum WeaponsType
     Sword,
     Wand,
 }
+/// <summary>
+/// Weapon represents a equitable weapon.
+/// </summary>
 public class Weapon : IEquipment
 {
     private WeaponsType Type;

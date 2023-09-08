@@ -1,6 +1,9 @@
 ﻿namespace DungeonMaster;
 
-public class Wizard : Hero
+/// <summary>
+/// Thw Wizard class represents a wizard hero class
+/// </summary>
+public class Wizard : IHero
 {
     public string Name { get; set; }
     public int Level { get; set; }
@@ -28,11 +31,12 @@ public class Wizard : Hero
         {
             dmgWeapon = weapon.GetDamage();
         }
+
         return dmgWeapon + dmgAttribute;
     }
 }
 
-public class Archer : Hero
+public class Archer : IHero
 {
     public string Name { get; set; }
     public int Level { get; set; }
@@ -54,12 +58,18 @@ public class Archer : Hero
     public int CalculateDamage()
     {
         int dmgAttribute = Attributes.Dexterity;
-        int dmgWeapon = Equipments.OfType<Weapon>().FirstOrDefault()!.GetDamage();
+        int dmgWeapon = 0;
+        IEquipment equipment = Equipments[EquipmentSlot.Weapon];
+        if (equipment is Weapon weapon)
+        {
+            dmgWeapon = weapon.GetDamage();
+        }
+
         return dmgWeapon + dmgAttribute;
     }
 }
 
-public class Swashbuckler : Hero
+public class Swashbuckler : IHero
 {
     public string Name { get; set; }
     public int Level { get; set; }
@@ -81,12 +91,18 @@ public class Swashbuckler : Hero
     public int CalculateDamage()
     {
         int dmgAttribute = Attributes.Dexterity;
-        int dmgWeapon = Equipments.OfType<Weapon>().FirstOrDefault()!.GetDamage();
+        int dmgWeapon = 0;
+        IEquipment equipment = Equipments[EquipmentSlot.Weapon];
+        if (equipment is Weapon weapon)
+        {
+            dmgWeapon = weapon.GetDamage();
+        }
+
         return dmgWeapon + dmgAttribute;
     }
 }
 
-public class Barbarian : Hero
+public class Barbarian : IHero
 {
     public string Name { get; set; }
     public int Level { get; set; }
@@ -108,7 +124,13 @@ public class Barbarian : Hero
     public int CalculateDamage()
     {
         int dmgAttribute = Attributes.Strength;
-        int dmgWeapon = Equipments.OfType<Weapon>().FirstOrDefault()!.GetDamage();
+        int dmgWeapon = 0;
+        IEquipment equipment = Equipments[EquipmentSlot.Weapon];
+        if (equipment is Weapon weapon)
+        {
+            dmgWeapon = weapon.GetDamage();
+        }
+
         return dmgWeapon + dmgAttribute;
     }
 }

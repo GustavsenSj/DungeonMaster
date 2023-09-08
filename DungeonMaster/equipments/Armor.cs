@@ -1,5 +1,7 @@
 ﻿namespace DungeonMaster;
-
+/// <summary>
+/// Represents all th different type of armor that exist in the program
+/// </summary>
 public enum ArmorType
 {
     Cloth,
@@ -7,6 +9,9 @@ public enum ArmorType
     Mail,
     Plate
 }
+/// <summary>
+/// Armor class represents a piece of armor. 
+/// </summary>
 public class Armor: IEquipment
 {
     public ArmorType Type;

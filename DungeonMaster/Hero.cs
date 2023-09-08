@@ -1,5 +1,8 @@
 ﻿namespace DungeonMaster;
 
+/// <summary>
+/// Contains the different attributes a hero/player can have  
+/// </summary>
 public class HeroAttributes
 {
     public int Strength;
@@ -13,24 +16,26 @@ public class HeroAttributes
         Intelligence = intelligence;
     }
 
-    public void AddToStrength(int toAdd)
-    {
-        Strength += toAdd;
-    }
-
-    public void AddToDex(int toAdd)
-    {
-        Dexterity += toAdd;
-    }
-
-    public void AddToInt(int toAdd)
-    {
-        Intelligence += toAdd;
-    }
+    // public void AddToStrength(int toAdd)
+    // {
+    //     Strength += toAdd;
+    // }
+    //
+    // public void AddToDex(int toAdd)
+    // {
+    //     Dexterity += toAdd;
+    // }
+    //
+    // public void AddToInt(int toAdd)
+    // {
+    //     Intelligence += toAdd;
+    // }
 }
 
-
-public interface Hero
+/// <summary>
+/// Hero interface represents the core values needed to create a hero/player
+/// </summary>
+public interface IHero
 {
     string Name { get; set; }
     int Level { get; set; }
@@ -39,15 +44,22 @@ public interface Hero
     ArmorType[] ValidArmorTypes { get; set; }
     HeroAttributes Attributes { get; set; }
 
+    /// <summary>
+    /// Equip a weapon to the hero if the hero can use the weapon
+    /// </summary>
+    /// <param name="weapon"> The weapon to equipped </param>
     public void EquipWeapon(Weapon weapon)
     {
-        
         if (ValidWeaponsTypes.Contains(weapon.GetType()) && Level >= weapon.RequiredLevel)
         {
             Equipments[weapon.Slot] = weapon;
         }
     }
 
+    /// <summary>
+    /// Equip a armor to that armors slot if the hero can use the armor
+    /// </summary>
+    /// <param name="armor"> armor to be equipped </param>
     public void EquipArmor(Armor armor)
     {
         if (ValidArmorTypes.Contains(armor.GetArmorType()) && Level >= armor.RequiredLevel)
@@ -56,7 +68,16 @@ public interface Hero
         }
     }
 
+    /// <summary>
+    /// Calculate the Hero's attack damage 
+    /// </summary>
+    /// <returns> The damage as an int</returns>
     int CalculateDamage();
+
+    /// <summary>
+    /// Calculate the hero's total strength with modifiers 
+    /// </summary>
+    /// <returns>the strength as an int</returns>
     private int CalculateStrength()
     {
         int fromArmor = 0;
@@ -68,6 +89,10 @@ public interface Hero
         return fromArmor + Attributes.Strength;
     }
 
+    /// <summary>
+    /// Calculate the hero's total dexterity with modifiers
+    /// </summary>
+    /// <returns>The dexterity as an int</returns>
     private int CalculateDex()
     {
         int fromArmor = 0;
@@ -79,6 +104,10 @@ public interface Hero
         return fromArmor + Attributes.Dexterity;
     }
 
+    /// <summary>
+    /// Calculate the hero's total intelligence with modifiers
+    /// </summary>
+    /// <returns> The Intelligence as an int </returns>
     private int CalculateInt()
     {
         int fromArmor = 0;
@@ -90,11 +119,18 @@ public interface Hero
         return fromArmor + Attributes.Intelligence;
     }
 
+    /// <summary>
+    ///  Calculate the hero's total attribute score with modifier
+    /// </summary>
+    /// <returns>total attribute score as an int</returns>
     public int CalculateAttributes()
     {
         return CalculateStrength() + CalculateInt() + CalculateDex();
     }
 
+    /// <summary>
+    /// Temp function to print all the stats of th hero.
+    /// </summary>
     public void PrintHeroDetails()
     {
         Console.WriteLine("Hero Details:");
