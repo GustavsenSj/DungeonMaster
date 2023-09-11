@@ -16,20 +16,20 @@ public class HeroAttributes
         Intelligence = intelligence;
     }
 
-    // public void AddToStrength(int toAdd)
-    // {
-    //     Strength += toAdd;
-    // }
-    //
-    // public void AddToDex(int toAdd)
-    // {
-    //     Dexterity += toAdd;
-    // }
-    //
-    // public void AddToInt(int toAdd)
-    // {
-    //     Intelligence += toAdd;
-    // }
+    public void AddToStrength(int toAdd)
+    {
+        Strength += toAdd;
+    }
+
+    public void AddToDex(int toAdd)
+    {
+        Dexterity += toAdd;
+    }
+
+    public void AddToInt(int toAdd)
+    {
+        Intelligence += toAdd;
+    }
 }
 
 /// <summary>
@@ -39,7 +39,7 @@ public interface IHero
 {
     string Name { get; set; }
     int Level { get; set; }
-    Dictionary<EquipmentSlot, IEquipment> Equipments { get; set; }
+    Dictionary<EquipmentSlot, IEquipment?> Equipments { get; set; }
     WeaponsType[] ValidWeaponsTypes { get; set; }
     ArmorType[] ValidArmorTypes { get; set; }
     HeroAttributes Attributes { get; set; }
@@ -48,7 +48,7 @@ public interface IHero
     /// Equip a weapon to the hero if the hero can use the weapon
     /// </summary>
     /// <param name="weapon"> The weapon to equipped </param>
-    public void EquipWeapon(Weapon weapon)
+    public void EquipWeapon(Weapon? weapon)
     {
         if (ValidWeaponsTypes.Contains(weapon.GetType()) && Level >= weapon.RequiredLevel)
         {
@@ -60,7 +60,7 @@ public interface IHero
     /// Equip a armor to that armors slot if the hero can use the armor
     /// </summary>
     /// <param name="armor"> armor to be equipped </param>
-    public void EquipArmor(Armor armor)
+    public void EquipArmor(Armor? armor)
     {
         if (ValidArmorTypes.Contains(armor.GetArmorType()) && Level >= armor.RequiredLevel)
         {
@@ -129,6 +129,11 @@ public interface IHero
     }
 
     /// <summary>
+    /// increase the level of a hero by 1 and adjust the stat as so
+    /// </summary>
+    public void LevelUp();
+
+    /// <summary>
     /// Temp function to print all the stats of th hero.
     /// </summary>
     public void PrintHeroDetails()
@@ -137,7 +142,7 @@ public interface IHero
         Console.WriteLine($"Name: {Name}");
         Console.WriteLine($"Level: {Level}");
         Console.WriteLine("Equipments:");
-        foreach (KeyValuePair<EquipmentSlot, IEquipment> equipment in Equipments)
+        foreach (KeyValuePair<EquipmentSlot, IEquipment?> equipment in Equipments)
         {
             Console.WriteLine($"- {equipment.Value.Name}");
         }
@@ -159,4 +164,5 @@ public interface IHero
         Console.WriteLine($"Dexterity: {Attributes.Dexterity}");
         Console.WriteLine($"Intelligence: {Attributes.Intelligence}");
     }
+   
 }

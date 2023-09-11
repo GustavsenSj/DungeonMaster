@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonMaster", "DungeonMaster\DungeonMaster.csproj", "{C357B4DD-6444-40AB-B5B8-B9CD4653DEB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{8FC73B68-225E-47FB-9B29-5D1D89450D8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C357B4DD-6444-40AB-B5B8-B9CD4653DEB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C357B4DD-6444-40AB-B5B8-B9CD4653DEB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C357B4DD-6444-40AB-B5B8-B9CD4653DEB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC73B68-225E-47FB-9B29-5D1D89450D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC73B68-225E-47FB-9B29-5D1D89450D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC73B68-225E-47FB-9B29-5D1D89450D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC73B68-225E-47FB-9B29-5D1D89450D8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

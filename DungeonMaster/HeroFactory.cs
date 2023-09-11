@@ -1,4 +1,6 @@
-﻿namespace DungeonMaster;
+﻿using DungeonMaster.Hero;
+
+namespace DungeonMaster;
 /// <summary>
 /// The HeroFactory handles creation of different hero classes
 /// </summary>
