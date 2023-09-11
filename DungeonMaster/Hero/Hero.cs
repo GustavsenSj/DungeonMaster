@@ -1,4 +1,5 @@
 ﻿using DungeonMaster.equipments;
+using DungeonMaster.Exceptions;
 
 namespace DungeonMaster.Hero;
 
@@ -52,7 +53,7 @@ public interface IHero
     /// <param name="weapon"> The weapon to equipped </param>
     public void EquipWeapon(Weapon? weapon)
     {
-        if (ValidWeaponsTypes.Contains(weapon.GetType()) && Level >= weapon.RequiredLevel)
+        if (weapon != null && ValidWeaponsTypes.Contains(weapon.GetType()) && Level >= weapon.RequiredLevel)
         {
             Equipments[weapon.Slot] = weapon;
         }
@@ -64,10 +65,17 @@ public interface IHero
     /// <param name="armor"> armor to be equipped </param>
     public void EquipArmor(Armor? armor)
     {
-        if (ValidArmorTypes.Contains(armor.GetArmorType()) && Level >= armor.RequiredLevel)
+        if (armor != null && !ValidArmorTypes.Contains(armor.GetArmorType()))
         {
-            Equipments[armor.Slot] = armor;
+            throw new InvalidArmorTypeException("Invalid armor type");
         }
+
+        if (armor != null && Level < armor.RequiredLevel)
+        {
+            throw new InsufficientLevelException("Insufficient level to equip the armor");
+        }
+
+        if (armor != null) Equipments[armor.Slot] = armor;
     }
 
     /// <summary>
@@ -155,7 +163,7 @@ public interface IHero
         Console.WriteLine("Equipments:");
         foreach (KeyValuePair<EquipmentSlot, IEquipment?> equipment in Equipments)
         {
-            Console.WriteLine($"- {equipment.Value.Name}");
+            Console.WriteLine($"- {equipment.Value?.Name}");
         }
 
         Console.WriteLine("Valid Weapons Types:");

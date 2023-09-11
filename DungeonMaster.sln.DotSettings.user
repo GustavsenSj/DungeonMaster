@@ -1,24 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=14e2ee69_002D2bcf_002D444d_002D8452_002D5e3732beec08/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ClassTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.ClassTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.HeroCreationTests.CreateWizard_DefaultConstructor_SetsPropertiesCorrectly&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.EquipValidArmor&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.EquipNonValidArmor&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.EquipValidChest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.HeroCreationTests.LevelUpBarbarian&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.HeroCreationTests.CreateBarbarian&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.HeroCreationTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.CreateWeapon&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.CreateArmor&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.CorrectArmorAttributes&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.CorrectApplianceOfArmorAttributes&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.Calculate_AttributesWithOneArmor_ShouldReturnAttributes&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.Calculate_AttributesWithTwoArmor_ShouldReturnAttributes&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.Calculate_AttributesWithThreeArmor_ShouldReturnAttributes&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.Calculate_AttributesUnEquipArmor_ShouldReturnAttributes&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.DamageTest.CalculateDamage_WithStaffAndEquipment_ReturnsCalculatedAttributesAndStaffDamage&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.DamageTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=afc75eda_002D6abf_002D4506_002Db1c7_002D842165f6f6cb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	</wpf:ResourceDictionary>
