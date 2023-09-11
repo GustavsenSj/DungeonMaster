@@ -24,11 +24,13 @@ public class Barbarian : IHero
         this.EquipNullEquipment();
     }
 
-    public int CalculateDamage()
+    public double CalculateDamage()
     {
         int dmgAttribute = this.GetStrengthFromEquippedArmor(); 
         int dmgWeapon = this.GetDamageOfEquippedWeapon();
-        return dmgWeapon + dmgAttribute;
+       double damage =  dmgWeapon * (1+ dmgAttribute/100.00);
+        return Math.Round (damage,2);
+
     }
 
     public void LevelUp()

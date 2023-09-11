@@ -82,7 +82,7 @@ public interface IHero
     /// Calculate the Hero's attack damage 
     /// </summary>
     /// <returns> The damage as an int</returns>
-    int CalculateDamage();
+    double CalculateDamage();
 
     /// <summary>
     /// Calculate the hero's total strength with modifiers 

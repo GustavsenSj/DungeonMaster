@@ -26,12 +26,12 @@ public class Wizard : IHero
     }
 
 
-    public int CalculateDamage()
+    public double CalculateDamage()
     {
         int dmgAttribute =  this.GetIntFromEquippedArmor();
         int dmgWeapon = this.GetDamageOfEquippedWeapon();
-        
-        return dmgWeapon + dmgAttribute;
+        double damage =  dmgWeapon * (1+ dmgAttribute/100.00);
+        return Math.Round (damage,2);
     }
 
     public void LevelUp()

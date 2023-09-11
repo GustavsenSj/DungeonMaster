@@ -35,7 +35,7 @@ public static class HeroExtensions
 
     public static int GetDamageOfEquippedWeapon(this IHero hero)
     {
-        int damage = 0;
+        int damage = 1;
 
         IEquipment? equipment = hero.Equipments[EquipmentSlot.Weapon];
 

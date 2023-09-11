@@ -13,10 +13,10 @@ public class DamageTest
         var wizard = new HeroFactory().CreateWizard("Gandalf");
 
         // Act
-        int damage = wizard.CalculateDamage();
+        double damage = wizard.CalculateDamage();
 
         // Assert
-        Assert.Equal(8, damage); // Assumes default Intelligence attribute
+        Assert.Equal(1.08, damage); // Assumes default Intelligence attribute
     }
 
     [Fact]
@@ -28,10 +28,10 @@ public class DamageTest
         wizard.Equipments[EquipmentSlot.Weapon] = staff;
 
         // Act
-        int damage = wizard.CalculateDamage();
+        double damage = wizard.CalculateDamage();
 
         // Assert
-        Assert.Equal(18, damage); // Assumes default Intelligence attribute + 10 staff damage
+        Assert.Equal(10.80, damage); // Assumes default Intelligence attribute + 10 staff damage
     }
 
     [Fact]
@@ -45,10 +45,10 @@ public class DamageTest
         wizard.EquipArmor(head);
 
         // Act
-        int damage = wizard.CalculateDamage();
+        double damage = wizard.CalculateDamage();
 
         // Assert
-        Assert.Equal(20, damage);
+        Assert.Equal(11, damage);
     }
 
     [Fact]
@@ -64,6 +64,6 @@ public class DamageTest
         wizard.EquipWeapon(stick);
         
         //Assert
-        Assert.Equal(9, wizard.CalculateDamage());
+        Assert.Equal(1.08, wizard.CalculateDamage());
     }
 }
