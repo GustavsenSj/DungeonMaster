@@ -1,4 +1,6 @@
-﻿namespace DungeonMaster;
+﻿using DungeonMaster.Hero;
+
+namespace DungeonMaster.equipments;
 /// <summary>
 /// Represents all th different type of armor that exist in the program
 /// </summary>

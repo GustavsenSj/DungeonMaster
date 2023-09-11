@@ -11,7 +11,7 @@ public class HeroFactory
         return new Wizard(name);
     }
 
-    public IHero CreatArcher(string name)
+    public IHero CreateArcher(string name)
     {
         return new Archer(name);
     }

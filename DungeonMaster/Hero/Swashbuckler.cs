@@ -1,4 +1,6 @@
-﻿namespace DungeonMaster.Hero;
+﻿using DungeonMaster.equipments;
+
+namespace DungeonMaster.Hero;
 /// <summary>
 /// The Swashbuckler class represents the swashbuckler character class
 /// </summary>

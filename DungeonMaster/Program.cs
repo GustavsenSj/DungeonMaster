@@ -1,4 +1,6 @@
 ﻿using DungeonMaster;
+using DungeonMaster.equipments;
+using DungeonMaster.Hero;
 
 // Create the Weapon instance first
 Weapon? weapon = new Weapon("BigWeapon", 1, EquipmentSlot.Weapon, WeaponsType.Staff, 10);

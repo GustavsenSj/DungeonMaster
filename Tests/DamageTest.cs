@@ -1,9 +1,10 @@
 ﻿using DungeonMaster;
+using DungeonMaster.equipments;
 using DungeonMaster.Hero;
 
 namespace Tests;
 
-public class ClassTest
+public class DamageTest
 {
     [Fact]
     public void CalculateDamage_NoWeapon_ReturnsAttributeDamage()
@@ -33,19 +34,6 @@ public class ClassTest
         Assert.Equal(18, damage); // Assumes default Intelligence attribute + 10 staff damage
     }
 
-    [Fact]
-    public void LevelUp_IncreasesLevelAndAttributes()
-    {
-        // Arrange
-        var wizard = new Wizard("Dumbledore");
-
-        // Act
-        wizard.LevelUp();
-
-        // Assert
-        Assert.Equal(2, wizard.Level);
-        Assert.Equal(2, wizard.Attributes.Dexterity);
-        Assert.Equal(13, wizard.Attributes.Intelligence); // Assumes +5 on level up
-        Assert.Equal(2, wizard.Attributes.Strength);
-    }
+ 
+    
 }

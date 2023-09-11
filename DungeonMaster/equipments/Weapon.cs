@@ -1,4 +1,4 @@
-﻿namespace DungeonMaster;
+﻿namespace DungeonMaster.equipments;
 /// <summary>
 /// The WeaponsType represent all the different types of weapons that exist in the program. 
 /// </summary>
@@ -17,25 +17,25 @@ public enum WeaponsType
 /// </summary>
 public class Weapon : IEquipment
 {
-    private WeaponsType Type;
-    private int Damage;
+    private readonly WeaponsType _type;
+    private readonly int _damage;
     
     public Weapon(string name, int requiredLevel, EquipmentSlot equipmentSlot, WeaponsType type, int damage)
     {
         Name = name;
         RequiredLevel = requiredLevel;
         Slot = equipmentSlot;
-        Type = type;
-        Damage = damage;
+        _type = type;
+        _damage = damage;
     }
 
-    public WeaponsType GetType()
+    public new WeaponsType GetType()
     {
-        return Type;
+        return _type;
     }
     public int GetDamage()
     {
-        return Damage;
+        return _damage;
     }
     
     public string Name { get; set; }

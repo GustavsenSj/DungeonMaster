@@ -1,4 +1,6 @@
-﻿namespace DungeonMaster;
+﻿using DungeonMaster.equipments;
+
+namespace DungeonMaster.Hero;
 
 /// <summary>
 /// Contains the different attributes a hero/player can have  
@@ -78,12 +80,15 @@ public interface IHero
     /// Calculate the hero's total strength with modifiers 
     /// </summary>
     /// <returns>the strength as an int</returns>
-    private int CalculateStrength()
+    public int CalculateStrength()
     {
         int fromArmor = 0;
-        foreach (Armor armor in Equipments.OfType<Armor>())
+        foreach (IEquipment? equipment in Equipments.Values)
         {
-            fromArmor += armor.ArmorAttribute.Strength;
+            if (equipment is Armor armor)
+            {
+                fromArmor += armor.ArmorAttribute.Strength;
+            }
         }
 
         return fromArmor + Attributes.Strength;
@@ -93,12 +98,15 @@ public interface IHero
     /// Calculate the hero's total dexterity with modifiers
     /// </summary>
     /// <returns>The dexterity as an int</returns>
-    private int CalculateDex()
+    public int CalculateDex()
     {
         int fromArmor = 0;
-        foreach (Armor armor in Equipments.OfType<Armor>())
+        foreach (IEquipment? equipment in Equipments.Values)
         {
-            fromArmor += armor.ArmorAttribute.Dexterity;
+            if (equipment is Armor armor)
+            {
+                fromArmor += armor.ArmorAttribute.Dexterity;
+            }
         }
 
         return fromArmor + Attributes.Dexterity;
@@ -108,12 +116,15 @@ public interface IHero
     /// Calculate the hero's total intelligence with modifiers
     /// </summary>
     /// <returns> The Intelligence as an int </returns>
-    private int CalculateInt()
+    public int CalculateInt()
     {
         int fromArmor = 0;
-        foreach (Armor armor in Equipments.OfType<Armor>())
+        foreach (IEquipment? equipment in Equipments.Values)
         {
-            fromArmor += armor.ArmorAttribute.Intelligence;
+            if (equipment is Armor armor)
+            {
+                fromArmor += armor.ArmorAttribute.Intelligence;
+            }
         }
 
         return fromArmor + Attributes.Intelligence;
@@ -164,5 +175,4 @@ public interface IHero
         Console.WriteLine($"Dexterity: {Attributes.Dexterity}");
         Console.WriteLine($"Intelligence: {Attributes.Intelligence}");
     }
-   
 }

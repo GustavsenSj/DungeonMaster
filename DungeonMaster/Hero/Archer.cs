@@ -1,4 +1,6 @@
-﻿namespace DungeonMaster.Hero;
+﻿using DungeonMaster.equipments;
+
+namespace DungeonMaster.Hero;
 /// <summary>
 /// The archer class represents a archer hero class 
 /// </summary>

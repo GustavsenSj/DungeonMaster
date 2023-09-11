@@ -1,4 +1,6 @@
-﻿namespace DungeonMaster.Hero;
+﻿using DungeonMaster.equipments;
+
+namespace DungeonMaster.Hero;
 
 /// <summary>
 /// Thw Wizard class represents a wizard hero class
