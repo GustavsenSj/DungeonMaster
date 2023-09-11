@@ -28,8 +28,9 @@ public class Wizard : IHero
 
     public int CalculateDamage()
     {
-        int dmgAttribute = Attributes.Intelligence;
+        int dmgAttribute =  this.GetIntFromEquippedArmor();
         int dmgWeapon = this.GetDamageOfEquippedWeapon();
+        
         return dmgWeapon + dmgAttribute;
     }
 

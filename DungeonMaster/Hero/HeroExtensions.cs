@@ -46,4 +46,19 @@ public static class HeroExtensions
 
         return damage;
     }
+
+    public static int GetDexFromEquippedArmor(this IHero hero)
+    {
+        return hero.CalculateDex();
+    }
+
+    public static int GetIntFromEquippedArmor(this IHero hero)
+    {
+        return hero.CalculateInt();
+    }
+
+    public static int GetStrengthFromEquippedArmor(this IHero hero)
+    {
+        return hero.CalculateStrength();
+    }
 }

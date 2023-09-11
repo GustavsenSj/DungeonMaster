@@ -26,7 +26,7 @@ public class Barbarian : IHero
 
     public int CalculateDamage()
     {
-        int dmgAttribute = Attributes.Strength;
+        int dmgAttribute = this.GetStrengthFromEquippedArmor(); 
         int dmgWeapon = this.GetDamageOfEquippedWeapon();
         return dmgWeapon + dmgAttribute;
     }

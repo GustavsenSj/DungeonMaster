@@ -7,7 +7,7 @@ namespace Tests;
 public class EquipmentTest
 {
     [Fact]
-    public void CreateWeapon()
+    public void Create_CreateWeapon_ShouldReturnWeaponProps()
     {
         var weapon = new Weapon("Magical Stick", 2, EquipmentSlot.Weapon, WeaponsType.Staff, 3);
         Assert.Equal("Magical Stick", weapon.Name);
@@ -18,10 +18,12 @@ public class EquipmentTest
     }
 
     [Fact]
-    public void CreateArmor()
+    public void Create_CreateArmor_ShouldReturnArmorProps()
     {
+        //Arrange/Act
         var armor = new Armor("Comfy Pants", 1, EquipmentSlot.Legs, ArmorType.Cloth, new HeroAttributes(0, 2, -1));
 
+        //Assert
         Assert.Equal("Comfy Pants", armor.Name);
         Assert.Equal(1, armor.RequiredLevel);
         Assert.Equal(EquipmentSlot.Legs, armor.Slot);
@@ -33,11 +35,13 @@ public class EquipmentTest
     }
 
     [Fact]
-    public void EquipValidArmor()
+    public void Equip_EquipValidArmor_ShouldReturnEquippedItemName()
     {
         // Arrange
         var wizard = new HeroFactory().CreateWizard("Merlin");
         var staff = new Weapon("MagicStaff", 1, EquipmentSlot.Weapon, WeaponsType.Staff, 10);
+        
+        //Act
         wizard.EquipWeapon(staff);
 
         // Assert
@@ -46,11 +50,13 @@ public class EquipmentTest
     }
 
     [Fact]
-    public void EquipNonValidArmor()
+    public void Equip_EquipNonValidArmor_ShouldReturnNull()
     {
         // Arrange
         var wizard = new HeroFactory().CreateWizard("Merlin");
         var sword = new Weapon("Big boy sword", 1, EquipmentSlot.Weapon, WeaponsType.Sword, 10);
+        
+        //Act
         wizard.EquipWeapon(sword);
 
         //Assert 
@@ -58,11 +64,13 @@ public class EquipmentTest
     }
 
     [Fact]
-    public void EquipValidChest()
+    public void Equip_EquipValidChest_ShouldReturnEquippedItemName()
     {
         //Arrange
         var wizard = new HeroFactory().CreateWizard("Merlin");
         var chest = new Armor("Simple robe", 1, EquipmentSlot.Body, ArmorType.Cloth, new HeroAttributes(0, 0, 0));
+        
+        //Act
         wizard.EquipArmor(chest);
 
         //Assert
@@ -70,35 +78,67 @@ public class EquipmentTest
     }
 
     [Fact]
-    public void CorrectApplianceOfArmorAttributes()
+    public void Calculate_AttributesUnEquipArmor_ShouldReturnAttributes()
     {
-        var chest = new Armor("Simple robe", 1, EquipmentSlot.Body, ArmorType.Cloth, new HeroAttributes(0, 0, 4));
-        var legs = new Armor("Comfy Pants", 1, EquipmentSlot.Legs, ArmorType.Cloth, new HeroAttributes(0, 2, -1));
-        var head = new Armor("Cool shades", 1, EquipmentSlot.Head, ArmorType.Cloth, new HeroAttributes(10, 0, 5));
+       
+     var head = new Armor("Cool shades", 1, EquipmentSlot.Head, ArmorType.Cloth, new HeroAttributes(10, 0, 5));
+
         var wizard = new HeroFactory().CreateWizard("Potter");
 
+        wizard.EquipArmor(head);
+    
+        wizard.RemoveHead();
         Assert.Equal(1, wizard.CalculateStrength());
         Assert.Equal(1, wizard.CalculateDex());
         Assert.Equal(8, wizard.CalculateInt());
+    }
+    
+    [Fact]
+    public void Calculate_AttributesWithOneArmor_ShouldReturnAttributes()
+    {
+        var head = new Armor("Cool shades", 1, EquipmentSlot.Head, ArmorType.Cloth, new HeroAttributes(10, 0, 5));
+
+        var wizard = new HeroFactory().CreateWizard("Potter");
 
         wizard.EquipArmor(head);
+
         Assert.Equal(11, wizard.CalculateStrength());
         Assert.Equal(1, wizard.CalculateDex());
         Assert.Equal(13, wizard.CalculateInt());
+    }
 
+    [Fact]
+    public void Calculate_AttributesWithTwoArmor_ShouldReturnAttributes()
+    {
+        var legs = new Armor("Comfy Pants", 1, EquipmentSlot.Legs, ArmorType.Cloth, new HeroAttributes(0, 2, -1));
+        var head = new Armor("Cool shades", 1, EquipmentSlot.Head, ArmorType.Cloth, new HeroAttributes(10, 0, 5));
+
+        var wizard = new HeroFactory().CreateWizard("Potter");
+
+        wizard.EquipArmor(head);
         wizard.EquipArmor(legs);
-        Assert.Equal(11, wizard.CalculateStrength());
-        Assert.Equal(3, wizard.CalculateDex());
-        Assert.Equal(12, wizard.CalculateInt());
 
-        wizard.EquipArmor(chest);
-        Assert.Equal(11, wizard.CalculateStrength());
-        Assert.Equal(3, wizard.CalculateDex());
-        Assert.Equal(16, wizard.CalculateInt());
-
-        wizard.RemoveBody();
         Assert.Equal(11, wizard.CalculateStrength());
         Assert.Equal(3, wizard.CalculateDex());
         Assert.Equal(12, wizard.CalculateInt());
     }
+
+    [Fact]
+    public void Calculate_AttributesWithThreeArmor_ShouldReturnAttributes()
+    {
+        var legs = new Armor("Comfy Pants", 1, EquipmentSlot.Legs, ArmorType.Cloth, new HeroAttributes(0, 2, -1));
+        var head = new Armor("Cool shades", 1, EquipmentSlot.Head, ArmorType.Cloth, new HeroAttributes(10, 0, 5));
+        var chest = new Armor("Simple robe", 1, EquipmentSlot.Body, ArmorType.Cloth, new HeroAttributes(0, 0, 4));
+        var wizard = new HeroFactory().CreateWizard("Potter");
+
+        wizard.EquipArmor(head);
+        wizard.EquipArmor(legs);
+        wizard.EquipArmor(chest);
+        
+        Assert.Equal(11, wizard.CalculateStrength());
+        Assert.Equal(3, wizard.CalculateDex());
+        Assert.Equal(16, wizard.CalculateInt());
+    }
+    
+    
 }

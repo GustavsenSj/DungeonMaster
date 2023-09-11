@@ -26,7 +26,7 @@ public class Archer : IHero
 
     public int CalculateDamage()
     {
-        int dmgAttribute = Attributes.Dexterity;
+        int dmgAttribute = this.GetDexFromEquippedArmor(); 
         int dmgWeapon = this.GetDamageOfEquippedWeapon();
         return dmgWeapon + dmgAttribute;
     }

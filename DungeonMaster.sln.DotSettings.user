@@ -13,5 +13,12 @@
     &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.CreateArmor&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.CorrectArmorAttributes&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.CorrectApplianceOfArmorAttributes&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.Calculate_AttributesWithOneArmor_ShouldReturnAttributes&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.Calculate_AttributesWithTwoArmor_ShouldReturnAttributes&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.Calculate_AttributesWithThreeArmor_ShouldReturnAttributes&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest.Calculate_AttributesUnEquipArmor_ShouldReturnAttributes&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.DamageTest.CalculateDamage_WithStaffAndEquipment_ReturnsCalculatedAttributesAndStaffDamage&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.EquipmentTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::8FC73B68-225E-47FB-9B29-5D1D89450D8F::net6.0::Tests.DamageTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
