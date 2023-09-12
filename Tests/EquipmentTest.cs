@@ -50,19 +50,6 @@ public class EquipmentTest
             wizard.Equipments[EquipmentSlot.Weapon]?.Name);
     }
 
-    [Fact]
-    public void Equip_EquipNonValidArmor_ShouldReturnNull()
-    {
-        // Arrange
-        var wizard = new HeroFactory().CreateWizard("Merlin");
-        var sword = new Weapon("Big boy sword", 1, EquipmentSlot.Weapon, WeaponsType.Sword, 10);
-
-        //Act
-        wizard.EquipWeapon(sword);
-
-        //Assert 
-        Assert.Null(wizard.Equipments[EquipmentSlot.Weapon]);
-    }
 
     [Fact]
     public void Equip_EquipValidChest_ShouldReturnEquippedItemName()
@@ -140,13 +127,31 @@ public class EquipmentTest
         Assert.Equal(16, wizard.CalculateInt());
     }
 
-    [Fact]
-    public void ErrorHandling_WhenEquippingInvalidType_ShouldThrowInvalidTypeError()
+    [Theory]
+    [InlineData(ArmorType.Leather)]
+    [InlineData(ArmorType.Plate)]
+    [InlineData(ArmorType.Mail)]
+    public void ErrorHandling_WhenEquippingInvalidType_ShouldThrowInvalidTypeError(ArmorType type)
     {
         var wizard = new HeroFactory().CreateWizard("Weasley");
-        var chest = new Armor("Big platy plate", 1, EquipmentSlot.Body, ArmorType.Plate, new HeroAttributes(0, 0, 0));
+        var chest = new Armor("Big platy plate", 1, EquipmentSlot.Body, type, new HeroAttributes(0, 0, 0));
 
-        Assert.Throws<InvalidArmorTypeException>(() => wizard.EquipArmor(chest));
+        Assert.Throws<InvalidEquipmentTypeException>(() => wizard.EquipArmor(chest));
+    }
+
+    [Theory]
+    [InlineData(WeaponsType.Sword)]
+    [InlineData(WeaponsType.Hatchet)]
+    [InlineData(WeaponsType.Bow)]
+    [InlineData(WeaponsType.Dagger)]
+    [InlineData(WeaponsType.Mace)]
+    public void ErrorHandling_EquipNonValidWeapon_ShouldThrowInvalidTypeError(WeaponsType type)
+    {
+        // Arrange
+        var wizard = new HeroFactory().CreateWizard("Merlin");
+        var weapon = new Weapon("Big boy sword", 1, EquipmentSlot.Weapon, type, 10);
+
+        Assert.Throws<InvalidEquipmentTypeException>(() => wizard.EquipWeapon(weapon));
     }
 
     [Fact]
@@ -154,8 +159,8 @@ public class EquipmentTest
     {
         var wizard = new HeroFactory().CreateWizard("Saruman");
         var chest = new Armor("High Level Item", 10, EquipmentSlot.Body, ArmorType.Cloth, new HeroAttributes(0, 0, 0));
-        
-        
+
+
         Assert.Throws<InsufficientLevelException>(() => wizard.EquipArmor(chest));
     }
 }
