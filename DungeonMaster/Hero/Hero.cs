@@ -42,10 +42,12 @@ public interface IHero
 {
     string Name { get; set; }
     int Level { get; set; }
+    string ClassName { get; set; }
     Dictionary<EquipmentSlot, IEquipment?> Equipments { get; set; }
     WeaponsType[] ValidWeaponsTypes { get; set; }
     ArmorType[] ValidArmorTypes { get; set; }
     HeroAttributes Attributes { get; set; }
+    
 
     /// <summary>
     /// Equip a weapon to the hero if the hero can use the weapon
@@ -169,6 +171,7 @@ public interface IHero
     {
         Console.WriteLine("Hero Details:");
         Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Class: {ClassName}");
         Console.WriteLine($"Level: {Level}");
         Console.WriteLine("Equipments:");
         foreach (KeyValuePair<EquipmentSlot, IEquipment?> equipment in Equipments)
@@ -192,5 +195,6 @@ public interface IHero
         Console.WriteLine($"Strength: {Attributes.Strength}");
         Console.WriteLine($"Dexterity: {Attributes.Dexterity}");
         Console.WriteLine($"Intelligence: {Attributes.Intelligence}");
+        Console.WriteLine($"Damage: {CalculateDamage()}");
     }
 }

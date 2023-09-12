@@ -8,6 +8,7 @@ public class Swashbuckler : IHero
 {
     public string Name { get; set; }
     public int Level { get; set; }
+    public string ClassName { get; set; }
     public Dictionary<EquipmentSlot, IEquipment?> Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
@@ -16,6 +17,7 @@ public class Swashbuckler : IHero
     public Swashbuckler(string name)
     {
         Name = name;
+        ClassName = "Swashbuckler";
         Attributes = new HeroAttributes(2, 6, 1);
         Level = 1;
         ValidWeaponsTypes = new WeaponsType[] { WeaponsType.Dagger, WeaponsType.Sword };

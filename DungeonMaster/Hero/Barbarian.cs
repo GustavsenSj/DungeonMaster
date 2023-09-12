@@ -8,6 +8,7 @@ public class Barbarian : IHero
 {
     public string Name { get; set; }
     public int Level { get; set; }
+    public string ClassName { get; set; }
     public Dictionary<EquipmentSlot, IEquipment?> Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
@@ -16,6 +17,7 @@ public class Barbarian : IHero
     public Barbarian(string name)
     {
         Name = name;
+        ClassName = "Barbarian";
         Attributes = new HeroAttributes(5, 2, 1);
         Level = 1;
         ValidWeaponsTypes = new WeaponsType[] { WeaponsType.Hatchet, WeaponsType.Mace, WeaponsType.Sword };
