@@ -9,6 +9,7 @@ public class Wizard : IHero
 {
     public string Name { get; set; }
     public int Level { get; set; }
+    public string ClassName { get; set; }
     public Dictionary<EquipmentSlot, IEquipment?> Equipments { get; set; }
     public WeaponsType[] ValidWeaponsTypes { get; set; }
     public ArmorType[] ValidArmorTypes { get; set; }
@@ -17,6 +18,7 @@ public class Wizard : IHero
     public Wizard(string name)
     {
         Name = name;
+        ClassName = "Wizard";
         Attributes = new HeroAttributes(1, 1, 8);
         Level = 1;
         ValidWeaponsTypes = new WeaponsType[] { WeaponsType.Staff, WeaponsType.Wand };

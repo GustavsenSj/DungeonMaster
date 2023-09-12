@@ -15,7 +15,3 @@ Console.WriteLine("Hello, World!");
 player.EquipWeapon(weapon);
 player.EquipArmor(armor);
 player.PrintHeroDetails();
-Console.WriteLine($"{player.CalculateDamage()}");
-player.LevelUp();
-player.PrintHeroDetails();
-Console.WriteLine($"{player.CalculateDamage()}");
