@@ -5,7 +5,8 @@ namespace DungeonMaster;
 
 public class GameController
 {
-    private static Random random = new Random();
+    private static readonly Random Random = new Random();
+    private IHero _character = null!;
 
     public void StartGame()
     {
@@ -17,55 +18,69 @@ public class GameController
 
         if (characterName != null)
         {
-            IHero character = SelectCharacterClass(characterName);
+            _character = SelectCharacterClass(characterName);
             bool playing = true;
 
             // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
             while (playing)
             {
-                Console.Clear();
-                List<IEquipment> randomWeapons = GenerateRandomWeapons(3);
-                Console.WriteLine("Three weapons have dropped:");
-                Console.Write("(You are proficient with: ");
-                foreach (WeaponsType item in character.ValidWeaponsTypes)
-                {
-                    Console.Write(item);
-                    Console.Write(item == character.ValidWeaponsTypes.Last() ? ")\n" : ", ");
-                }
-
-                for (int i = 0; i < randomWeapons.Count; i++)
-                {
-                    Console.WriteLine($"{i + 1}. {randomWeapons[i].Name}");
-                }
-
-                Console.WriteLine($"{randomWeapons.Count + 1}. None");
-
-                int chosenWeaponIndex = GetEquipmentChoice(randomWeapons.Count);
-                if (chosenWeaponIndex == randomWeapons.Count)
-                {
-                    Console.WriteLine("No weapons selected");
-                }
-                else
-                {
-                    IEquipment chosenEquipment = randomWeapons[chosenWeaponIndex];
-                    Console.WriteLine($"You've chosen the {chosenEquipment.Name} as your weapon.");
-                    if (chosenEquipment is not Weapon weapon) continue;
-                    try
-                    {
-                        character.EquipWeapon(weapon);
-                        Console.WriteLine($"Equipped weapon {weapon.Name}");
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("You are not proficient");
-                    }
-                }
-
-                Console.WriteLine("Press Enter to continue...");
-                Console.ReadLine();
+                WeaponDropHandler();
+                EnemyEncounter();
             }
         }
     }
+
+    private void EnemyEncounter()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void WeaponDropHandler()
+    {
+        Console.Clear();
+        List<IEquipment> randomWeapons = GenerateRandomWeapons(3);
+        Console.WriteLine("Three weapons have dropped:");
+        Console.Write("(You are proficient with: ");
+        foreach (WeaponsType item in _character.ValidWeaponsTypes)
+        {
+            Console.Write(item);
+            Console.Write(item == _character.ValidWeaponsTypes.Last() ? ")\n" : ", ");
+        }
+
+        for (int i = 0; i < randomWeapons.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {randomWeapons[i].Name}");
+        }
+
+        Console.WriteLine($"{randomWeapons.Count + 1}. None");
+
+        int chosenWeaponIndex = GetEquipmentChoice(randomWeapons.Count + 1);
+        if (chosenWeaponIndex == randomWeapons.Count)
+        {
+            Console.WriteLine("No weapons selected");
+        }
+        else
+        {
+            IEquipment chosenEquipment = randomWeapons[chosenWeaponIndex];
+            Console.WriteLine($"You've chosen the {chosenEquipment.Name} as your weapon.");
+            if (chosenEquipment is Weapon weapon)
+            {
+                try
+                {
+                    _character.EquipWeapon(weapon);
+                    Console.WriteLine($"Equipped weapon {weapon.Name}");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("You are not proficient");
+                }
+            }
+        }
+
+        Console.WriteLine("Press Enter to continue...");
+        Console.ReadLine();
+    }
+
 
     private IHero SelectCharacterClass(string name)
     {
@@ -106,8 +121,8 @@ public class GameController
         for (int i = 0; i < count; i++)
         {
             string randomWeaponName = WeaponNameGenerator.GenerateRandomWeaponName();
-            int randomDamage = random.Next(1, 21);
-            int randomLevel = random.Next(1, 5);
+            int randomDamage = Random.Next(1, 21);
+            int randomLevel = Random.Next(1, 5);
 
             // Split the generated weapon name at spaces and use the last part (noun) to determine the weapon type
             string[] nameParts = randomWeaponName.Split(' ');
