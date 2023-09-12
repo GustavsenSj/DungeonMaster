@@ -53,7 +53,17 @@ public interface IHero
     /// <param name="weapon"> The weapon to equipped </param>
     public void EquipWeapon(Weapon? weapon)
     {
-        if (weapon != null && ValidWeaponsTypes.Contains(weapon.GetType()) && Level >= weapon.RequiredLevel)
+        if (weapon != null && !ValidWeaponsTypes.Contains(weapon.GetType()))
+        {
+            throw new InvalidWeaponTypeException("Invalid Weapon type");
+        }
+
+        if (weapon != null && Level < weapon.RequiredLevel)
+        {
+            throw new InsufficientLevelException("Insufficient level to equip the weapon");
+        }
+
+        if (weapon != null)
         {
             Equipments[weapon.Slot] = weapon;
         }
