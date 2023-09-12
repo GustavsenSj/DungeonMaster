@@ -232,4 +232,5 @@ public class HeroCreationTests
         Assert.Equal(2, hero.Attributes.Intelligence);
         Assert.Equal(3, hero.Attributes.Strength);
     }
+    
 }

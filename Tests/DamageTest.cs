@@ -35,7 +35,7 @@ public class DamageTest
     }
 
     [Fact]
-    public void CalculateDamage_WithStaffAndEquipment_ReturnsCalculatedAttributesAndStaffDamage()
+    public void CalculateDamage_WithStaffAndEquipment_ReturnsCalculatedAttributesAndStaffDamage() 
     {
         // Arrange
         var wizard = new HeroFactory().CreateWizard("Merlin");

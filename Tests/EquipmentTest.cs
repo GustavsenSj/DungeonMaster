@@ -1,5 +1,6 @@
 ﻿using DungeonMaster;
 using DungeonMaster.equipments;
+using DungeonMaster.Exceptions;
 using DungeonMaster.Hero;
 
 namespace Tests;
@@ -40,7 +41,7 @@ public class EquipmentTest
         // Arrange
         var wizard = new HeroFactory().CreateWizard("Merlin");
         var staff = new Weapon("MagicStaff", 1, EquipmentSlot.Weapon, WeaponsType.Staff, 10);
-        
+
         //Act
         wizard.EquipWeapon(staff);
 
@@ -55,7 +56,7 @@ public class EquipmentTest
         // Arrange
         var wizard = new HeroFactory().CreateWizard("Merlin");
         var sword = new Weapon("Big boy sword", 1, EquipmentSlot.Weapon, WeaponsType.Sword, 10);
-        
+
         //Act
         wizard.EquipWeapon(sword);
 
@@ -69,7 +70,7 @@ public class EquipmentTest
         //Arrange
         var wizard = new HeroFactory().CreateWizard("Merlin");
         var chest = new Armor("Simple robe", 1, EquipmentSlot.Body, ArmorType.Cloth, new HeroAttributes(0, 0, 0));
-        
+
         //Act
         wizard.EquipArmor(chest);
 
@@ -80,19 +81,18 @@ public class EquipmentTest
     [Fact]
     public void Calculate_AttributesUnEquipArmor_ShouldReturnAttributes()
     {
-       
-     var head = new Armor("Cool shades", 1, EquipmentSlot.Head, ArmorType.Cloth, new HeroAttributes(10, 0, 5));
+        var head = new Armor("Cool shades", 1, EquipmentSlot.Head, ArmorType.Cloth, new HeroAttributes(10, 0, 5));
 
         var wizard = new HeroFactory().CreateWizard("Potter");
 
         wizard.EquipArmor(head);
-    
+
         wizard.RemoveHead();
         Assert.Equal(1, wizard.CalculateStrength());
         Assert.Equal(1, wizard.CalculateDex());
         Assert.Equal(8, wizard.CalculateInt());
     }
-    
+
     [Fact]
     public void Calculate_AttributesWithOneArmor_ShouldReturnAttributes()
     {
@@ -134,11 +134,28 @@ public class EquipmentTest
         wizard.EquipArmor(head);
         wizard.EquipArmor(legs);
         wizard.EquipArmor(chest);
-        
+
         Assert.Equal(11, wizard.CalculateStrength());
         Assert.Equal(3, wizard.CalculateDex());
         Assert.Equal(16, wizard.CalculateInt());
     }
-    
-    
+
+    [Fact]
+    public void ErrorHandling_WhenEquippingInvalidType_ShouldThrowInvalidTypeError()
+    {
+        var wizard = new HeroFactory().CreateWizard("Weasley");
+        var chest = new Armor("Big platy plate", 1, EquipmentSlot.Body, ArmorType.Plate, new HeroAttributes(0, 0, 0));
+
+        Assert.Throws<InvalidArmorTypeException>(() => wizard.EquipArmor(chest));
+    }
+
+    [Fact]
+    public void ErrorHandling_WhenEquippingInvalidLevel_ShouldThroeInsufficientLevelException()
+    {
+        var wizard = new HeroFactory().CreateWizard("Saruman");
+        var chest = new Armor("High Level Item", 10, EquipmentSlot.Body, ArmorType.Cloth, new HeroAttributes(0, 0, 0));
+        
+        
+        Assert.Throws<InsufficientLevelException>(() => wizard.EquipArmor(chest));
+    }
 }
