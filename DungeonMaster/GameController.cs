@@ -1,4 +1,5 @@
-﻿using DungeonMaster.equipments;
+﻿using DungeonMaster.Enemy;
+using DungeonMaster.equipments;
 using DungeonMaster.Hero;
 
 namespace DungeonMaster;
@@ -7,6 +8,8 @@ public class GameController
 {
     private static readonly Random Random = new Random();
     private IHero _character = null!;
+    private int _room = 1;
+    private bool _playing = false;
 
     public void StartGame()
     {
@@ -14,25 +17,82 @@ public class GameController
         Console.Write("Enter your character name: ");
         string? characterName = Console.ReadLine();
 
-        Console.WriteLine($"Welcome, {characterName}!");
 
         if (characterName != null)
         {
             _character = SelectCharacterClass(characterName);
-            bool playing = true;
+
+            Console.WriteLine(
+                $"Welcome, {characterName}! You have selected the {_character.ClassName} class.");
+            EnterToContinue();
+            _playing = true;
+
 
             // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
-            while (playing)
+            while (_playing)
             {
-                WeaponDropHandler();
                 EnemyEncounter();
+                WeaponDropHandler();
             }
         }
     }
 
     private void EnemyEncounter()
     {
-        throw new NotImplementedException();
+        Console.Clear();
+        Enemy.Enemy enemy = CreateRandomEnemy();
+
+        Console.WriteLine($"As you walk into the room nr {_room}. A {enemy.Name} spots you and combat begins!");
+        EnterToContinue();
+        CombatHandler(enemy);
+    }
+
+    private void CombatHandler(Enemy.Enemy enemy)
+    {
+        int turn = 1;
+        bool playerTurn = (Random.Next(0, 2) == 0);
+        while (enemy.Hp > 0)
+        {
+            Console.WriteLine($"Turn {turn}.");
+            if (playerTurn)
+            {
+                Console.WriteLine($"You attack the {enemy.Name} for {_character.CalculateDamage()}");
+                enemy.Hp -= _character.CalculateDamage();
+                if (enemy.Hp <= 0)
+                {
+                    Console.WriteLine($"{enemy.Name} has died! \n You have won this time!");
+                    _character.LevelUp();
+                    Console.WriteLine($"Your combat knowledge has increased you level. {_character.Name} is now lvl {_character.Level}");
+                    EnterToContinue();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"The {enemy.Name} attacks you for {enemy.Attack()} damage");
+            }
+
+            playerTurn = !playerTurn;
+
+            turn++;
+        }
+
+        _room++;
+    }
+
+    private void EnterToContinue()
+    {
+        Console.WriteLine("Press ENTER to continue...");
+        Console.ReadLine();
+        Console.Clear();
+    }
+
+    private static Enemy.Enemy CreateRandomEnemy()
+    {
+        int randomHp = Random.Next(1, 30);
+        string name = EnemyNameGenerator.GenerateRandomEnemyName();
+        int damage = Random.Next(1, 10);
+
+        return new Enemy.Enemy(name, damage, randomHp);
     }
 
     private void WeaponDropHandler()
@@ -49,7 +109,7 @@ public class GameController
 
         for (int i = 0; i < randomWeapons.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {randomWeapons[i].Name}");
+            Console.WriteLine($"{i + 1}. {randomWeapons[i].Name} (lvl requirement: {randomWeapons[i].RequiredLevel})");
         }
 
         Console.WriteLine($"{randomWeapons.Count + 1}. None");
@@ -77,8 +137,7 @@ public class GameController
             }
         }
 
-        Console.WriteLine("Press Enter to continue...");
-        Console.ReadLine();
+        EnterToContinue();
     }
 
 
