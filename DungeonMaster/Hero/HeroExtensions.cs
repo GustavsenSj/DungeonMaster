@@ -1,10 +1,15 @@
 ﻿using DungeonMaster.equipments;
-using DungeonMaster.Hero;
 
-namespace DungeonMaster;
-
+namespace DungeonMaster.Hero;
+/// <summary>
+/// Hero Extensions represents an extensions class for the IHero. It extends the functionality of th classes implementing IHero Interface 
+/// </summary>
 public static class HeroExtensions
 {
+    /// <summary>
+    /// Sett all equipment slots to null so that no equipment is equipped 
+    /// </summary>
+    /// <param name="hero"> The hero to run the function on </param>
     public static void EquipNullEquipment(this IHero hero)
     {
         hero.Equipments.Add(EquipmentSlot.Body, null);
