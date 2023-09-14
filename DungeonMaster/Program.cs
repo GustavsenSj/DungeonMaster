@@ -1,19 +1,34 @@
 using DungeonMaster;
-using DungeonMaster.equipments;
+using DungeonMaster.DB;
 using DungeonMaster.Hero;
+using DotNetEnv;
 
-// // Create the Weapon instance first
-// Weapon? weapon = new Weapon("BigWeapon", 1, EquipmentSlot.Weapon, WeaponsType.Staff, 10);
-//
-// // Create the armor 
-// Armor? armor = new Armor("BigChestPlate", 1, EquipmentSlot.Body, ArmorType.Cloth, new HeroAttributes(0, 0, 2));
-// // Then create the Hero
-// IHero player = new HeroFactory().CreateWizard("Sjur");
-//
-// Console.WriteLine("Hello, World!");
-//
-// player.EquipWeapon(weapon);
-// player.EquipArmor(armor);
-// player.PrintHeroDetails();
+
 GameController gameController = new GameController();
-gameController.StartGame();
+
+Env.Load();
+string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? "";
+
+string testValue = Environment.GetEnvironmentVariable("TEST_VARIABLE");
+Console.WriteLine($"Test Variable: {testValue}");
+
+Console.WriteLine("Connection string: "+connectionString);
+IHero hero = new HeroFactory().CreateWizard("Sjur");
+
+try
+{
+    var dal = new HeroDataAccessLayer(connectionString);
+    dal.InsertHero(hero);
+    Console.WriteLine("HeroSaved");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error saving hero: {ex.Message}");
+}
+
+
+// using (DatabaseConnection dbConnection = new DatabaseConnection(connectionString))
+// {
+//     SqlConnection connection = dbConnection.GetConnection();
+// }
+// gameController.StartGame();
