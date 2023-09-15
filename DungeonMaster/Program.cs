@@ -9,15 +9,12 @@ GameController gameController = new GameController();
 Env.Load();
 string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? "";
 
-string testValue = Environment.GetEnvironmentVariable("TEST_VARIABLE");
-Console.WriteLine($"Test Variable: {testValue}");
-
 Console.WriteLine("Connection string: "+connectionString);
 IHero hero = new HeroFactory().CreateWizard("Sjur");
 
 try
 {
-    var dal = new HeroDataAccessLayer(connectionString);
+    var dal = new HeroDataAccessLayer();
     dal.InsertHero(hero);
     Console.WriteLine("HeroSaved");
 }
